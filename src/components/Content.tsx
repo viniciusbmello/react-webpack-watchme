@@ -1,36 +1,33 @@
-import { GenreResponseProps, MovieProps } from '../App';
+import { useContext } from 'react';
 import MovieCard from './MovieCard';
+import Header from './Header';
+import { MoviesContext } from '../contexts/MoviesContext';
 
-interface ContentProps {
-  movies: MovieProps[];
-  selectedGenre: GenreResponseProps;
-}
+import '../styles/content.scss';
 
-const Content: React.FC<ContentProps> = ({
-  movies,
-  selectedGenre,
-}: ContentProps) => (
-  <div className="container">
-    <header>
-      <span className="category">
-        Categoria:<span> {selectedGenre.title}</span>
-      </span>
-    </header>
+const Content: React.FC = () => {
+  const context = useContext(MoviesContext);
+  const { movies } = context;
 
-    <main>
-      <div className="movies-list">
-        {movies.map(movie => (
-          <MovieCard
-            key={movie.imdbID}
-            title={movie.Title}
-            poster={movie.Poster}
-            runtime={movie.Runtime}
-            rating={movie.Ratings[0].Value}
-          />
-        ))}
-      </div>
-    </main>
-  </div>
-);
+  return (
+    <div className="container">
+      <Header />
+
+      <main>
+        <div className="movies-list">
+          {movies.map(movie => (
+            <MovieCard
+              key={movie.imdbID}
+              title={movie.Title}
+              poster={movie.Poster}
+              runtime={movie.Runtime}
+              rating={movie.Ratings[0].Value}
+            />
+          ))}
+        </div>
+      </main>
+    </div>
+  );
+};
 
 export default Content;

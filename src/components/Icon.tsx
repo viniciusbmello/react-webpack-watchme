@@ -104,7 +104,7 @@ const Icon: React.FC<IconProps> = (props: IconProps) => {
       );
 
     default:
-      return <span>Error</span>;
+      return <p>{props.name}</p>;
   }
 };
 

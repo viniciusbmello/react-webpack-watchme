@@ -1,34 +1,32 @@
-import { GenreResponseProps } from '../App';
+import { useContext } from 'react';
+import { Genre, MoviesContext } from '../contexts/MoviesContext';
 import Button from './Button';
 
-interface SideBarProps {
-  genres: GenreResponseProps[];
-  handleClickButton(id: number): void;
-  selectedGenreId: number;
-}
+import '../styles/sidebar.scss';
 
-const SideBar: React.FC<SideBarProps> = ({
-  genres,
-  handleClickButton,
-  selectedGenreId,
-}: SideBarProps) => (
-  <nav className="sidebar">
-    <span>
-      Watch<p>Me</p>
-    </span>
+const SideBar: React.FC = () => {
+  const context = useContext(MoviesContext);
+  const { genres, selectedGenre, handleSelectGenre } = context;
 
-    <div className="buttons-container">
-      {genres.map(genre => (
-        <Button
-          key={String(genre.id)}
-          title={genre.title}
-          iconName={genre.name}
-          onClick={() => handleClickButton(genre.id)}
-          selected={selectedGenreId === genre.id}
-        />
-      ))}
-    </div>
-  </nav>
-);
+  return (
+    <nav className="sidebar">
+      <span>
+        Watch<p>Me</p>
+      </span>
+
+      <div className="buttons-container">
+        {genres.map((genre: Genre) => (
+          <Button
+            key={String(genre.id)}
+            title={genre.title}
+            name={genre.name}
+            onClick={() => handleSelectGenre(genre.id)}
+            selected={selectedGenre.id === genre.id}
+          />
+        ))}
+      </div>
+    </nav>
+  );
+};
 
 export default SideBar;
