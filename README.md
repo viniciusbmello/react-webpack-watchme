@@ -14,7 +14,7 @@ This is an application where your main objective is to refactor a page for listi
 * [Found a bug? Missing a specific feature?](#bug-issues)
 * [License](#closed_book-license)
 
-### 💻 Technologies
+## 💻 Technologies
 
 This project was developed with the following technologies:
 
