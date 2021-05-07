@@ -1,8 +1,21 @@
-import { Button } from './Button';
+import { GenreResponseProps } from '../App';
+import Button from './Button';
 
-const SideBar = ({ genres, handleClickButton, selectedGenreId }: SideBarProps) => (
+interface SideBarProps {
+  genres: GenreResponseProps[];
+  handleClickButton(id: number): void;
+  selectedGenreId: number;
+}
+
+const SideBar: React.FC<SideBarProps> = ({
+  genres,
+  handleClickButton,
+  selectedGenreId,
+}: SideBarProps) => (
   <nav className="sidebar">
-    <span>Watch<p>Me</p></span>
+    <span>
+      Watch<p>Me</p>
+    </span>
 
     <div className="buttons-container">
       {genres.map(genre => (
@@ -16,6 +29,6 @@ const SideBar = ({ genres, handleClickButton, selectedGenreId }: SideBarProps) =
       ))}
     </div>
   </nav>
-)
+);
 
-export default SideBar
+export default SideBar;
