@@ -6,7 +6,10 @@ interface ContentProps {
   selectedGenre: GenreResponseProps;
 }
 
-const Content = ({ movies, selectedGenre }: ContentProps) => (
+const Content: React.FC<ContentProps> = ({
+  movies,
+  selectedGenre,
+}: ContentProps) => (
   <div className="container">
     <header>
       <span className="category">
